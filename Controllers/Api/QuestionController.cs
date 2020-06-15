@@ -1,24 +1,31 @@
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using team_test.Models;
 using team_test.ViewModels.Api.Question;
 using team_test.Services;
-using System.Threading.Tasks;
+
 
 namespace team_test.Controllers.Api
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class QuestionController : ControllerBase
     {
         private readonly QuestionRouterService router;
         private readonly QuestionService questions;
-        public QuestionController(QuestionService questions, QuestionRouterService router)
+        private readonly TestService tests;
+        public QuestionController(QuestionService questions, QuestionRouterService router, TestService tests)
         {
             this.router = router;
             this.questions = questions;
+            this.tests = tests;
         }
-        public async Task<IActionResult> Post(PostNew payload)
+
+        [HttpPost]
+        public async Task<IActionResult> Add(PostNew payload)
         {
             var question = new Models.Question
             {
@@ -34,6 +41,27 @@ namespace team_test.Controllers.Api
             };
             await questions.Add(question);
             return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Answer(ViewModels.Api.Question.Answer payload)
+        {
+            await questions.SetAnswer(payload.QuestionGuid, payload.AnswersGuid);
+            return Ok();
+        }
+    
+        public List<Question> All(Guid? questionGuid)
+        {
+            var guid = questionGuid ?? router.RunningTestGuid;
+            var question = tests.Get(guid).Questions;
+            return question;
+        }
+
+        public List<Question> NotAnswered(Guid? questionGuid)
+        {
+            var guid = questionGuid ?? router.RunningTestGuid;
+            var question = tests.Get(guid).Questions;
+            return question;
         }
     }
 }

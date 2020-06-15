@@ -10,4 +10,10 @@ namespace team_test.ViewModels.Api.Question
         public string Type { get; set; }
         public string Question { get; set; }
     }
+
+    public class Answer
+    {
+        public Guid QuestionGuid { get; set; }
+        public List<Guid> AnswersGuid { get; set; }
+    }
 }
