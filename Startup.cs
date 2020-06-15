@@ -30,7 +30,7 @@ namespace team_test
             services.AddControllersWithViews();
             services.AddDbContext<QuestionContext>(
                 o => o.UseMySql(ConnectionString, mysql => 
-                    mysql.ServerVersion(new Version(8, 0, 18), ServerType.MySql))
+                    mysql.ServerVersion(new Version(8, 0, 20), ServerType.MySql))
             );
             services.AddScoped<QuestionService>();
             services.AddScoped<TestService>();
@@ -52,7 +52,7 @@ namespace team_test
                 .AllowAnyOrigin()
                 .AllowAnyHeader());
             app.UseRouting();
-            app.UseAuthorization();
+            //app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
