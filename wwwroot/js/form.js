@@ -4,7 +4,7 @@ function pushAnswer(e) {
     console.log(answ);
     console.log(QuestionGuid);
 
-    let AnswersGuid = answ.id;
+    let AnswersGuid = [answ.id];
     result = {
         QuestionGuid,
         AnswersGuid
