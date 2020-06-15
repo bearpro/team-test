@@ -1,0 +1,15 @@
+@model Test
+
+<h2>@Model.Name</h2>
+@foreach (var question in Model.Questions)
+{
+    <div>
+        <h4>@question.Text</h4>
+        <table>
+        @foreach (var answer in question.Answers)
+        { 
+            <tr>@(answer.IsRight ? "+" : "-")<td>@answer.Text</td></tr>
+        }
+        </table>
+    </div>
+}
