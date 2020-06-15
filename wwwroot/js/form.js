@@ -21,6 +21,26 @@ function pushAnswer(e) {
     });
 }
 
+setInterval(() => {
+    fetch('/api/question/All/', {
+        method: 'GET'
+    })
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+    
+        let tmp = document.createElement('div');
+        tmp.id = 'tmp';
+        let t = document.getElementById('tmp');
+        console.log(t);
+        document.getElementById('tmp').replaceWith(tmp);
+        for (question of result) {
+            new Card(question.guid, question.text, 'MultiAnswer', question.answers);
+        }
+        let form = document.getElementById('main_form');
+    });
+}, 1000);
+
 fetch('/api/question/All/', {
     method: 'GET'
 })
@@ -78,7 +98,7 @@ class Card  {
         card_body_html.append(card_body_label_html);
         card_body_html.append(card_body_text_html);
         this.card_html.append(card_body_html);
-        document.getElementsByClassName('jumbotron')[0].append(this.card_html);
+        document.getElementById('tmp').append(this.card_html);
     }
 
     changeNameQuestion(question_name) {
@@ -86,13 +106,3 @@ class Card  {
         q.innerHTML = question_name;
     }
 }
-
-
-let form = document.getElementById('main_form');
-        form.addEventListener('submit', () => {
-        let jumbotron = document.getElementsByClassName('jumbotron')[0];
-        for (question of questions) {
-            new Card(i, 'Имя вопроса', 'SingleAnswer', ['Вариант 1', 'Вариант 2', 'Вариант 3']);
-        }
-          
-      })

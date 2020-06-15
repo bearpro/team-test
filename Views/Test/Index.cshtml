@@ -5,13 +5,14 @@
     <table>
         <tr>
             <td><p>Текущий тест:</p></td>
-            <td><input type="text" name="guid" value="@Model.RunningTestGuid"/></td>
+            <td><input type="text" name="guid" value="08d81131-7a15-41f5-85c2-b3e0122ffc2a"/></td>
+            @* <td><input type="text" name="guid" value="@Model.RunningTestGuid"/></td> *@
             <td><input type="submit" value="Применить"/></td>
         </tr>
     </table>
 }
 
-<h2>Список тестов</h2>
+@* <h2>Список тестов</h2>
 
 <ul>
 @foreach (var test in Model.Tests)
@@ -20,19 +21,22 @@
 }
 </ul>
 
-<a asp-route-action="Add">Добавить</a>
+<a asp-route-action="Add">Добавить</a> *@
 
 
 <div class="container">
     <div class="jumbotron">
         <h1 class="display-4">Банк вопросов</h1>
+        <div id="tmp">
+            
+        </div>
 
-        <form>
+        @* <form>
             <div class="form-group">
                 <label for="question_name">Введите вопрос</label>
                 <input type="text" class="form-control" id="question_name">
             </div>
             <button type="submit" class="btn btn-primary">Найти</button>
-        </form>
+        </form> *@
     </div>
 </div>
