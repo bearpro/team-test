@@ -12,7 +12,7 @@
     </table>
 }
 
-@* <h2>Список тестов</h2>
+<h2>Список тестов</h2>
 
 <ul>
 @foreach (var test in Model.Tests)
@@ -20,7 +20,7 @@
     <li><a asp-action="Questions" asp-route-guid="@test.Guid">@test.Name</a> (@test.Guid)</li>
 }
 </ul>
-
+@*
 <a asp-route-action="Add">Добавить</a> *@
 
 
