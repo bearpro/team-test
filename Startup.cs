@@ -46,7 +46,6 @@ namespace team_test
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
             }
             app.UseStaticFiles();
             app.UseCors(config => config
