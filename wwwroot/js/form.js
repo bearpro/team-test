@@ -1,3 +1,20 @@
+function pushAnswer(e) {
+    let answ = e.currentTarget;
+    let question_guid = answ.parentNode.parentNode.parentNode.id;
+    console.log(answ);
+    console.log(question_guid);
+
+    let answerGuid = answ.id;
+    result = {
+        answerGuid,
+        question_guid
+    };
+
+    fetch('http://5.63.154.249:5000/api/question/add/', {
+        method: 'post'
+    });
+}
+
 fetch('/api/question/All/', {
     method: 'GET'
 })
@@ -8,12 +25,7 @@ fetch('/api/question/All/', {
     for (question of result) {
         new Card(question.guid, question.text, 'MultiAnswer', question.answers);
     }
-
-
     let form = document.getElementById('main_form');
-    form.addEventListener('submit', () => {
-
-    });
 });
 
 
@@ -52,6 +64,7 @@ class Card  {
             li_html.id = answer.guid;
 
             li_html.innerHTML = answer.text;
+            li_html.addEventListener('click', pushAnswer);
             card_body_text_html.append(li_html);
         }
 
