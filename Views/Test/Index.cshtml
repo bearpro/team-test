@@ -5,8 +5,7 @@
     <table>
         <tr>
             <td><p>Текущий тест:</p></td>
-            <td><input type="text" name="guid" value="08d81131-7a15-41f5-85c2-b3e0122ffc2a"/></td>
-            @* <td><input type="text" name="guid" value="@Model.RunningTestGuid"/></td> *@
+            <td><input type="text" name="guid" value="@Model.RunningTestGuid"/></td>
             <td><input type="submit" value="Применить"/></td>
         </tr>
     </table>
@@ -20,8 +19,7 @@
     <li><a asp-action="Questions" asp-route-guid="@test.Guid">@test.Name</a> (@test.Guid)</li>
 }
 </ul>
-@*
-<a asp-route-action="Add">Добавить</a> *@
+<a asp-route-action="Add">Добавить</a>
 
 
 <div class="container">
