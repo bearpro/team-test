@@ -14,11 +14,6 @@ namespace team_test.Services
         {
             this.db = db;
         }
-        
-        public List<Question> GetAll()
-        {
-            return db.Questions.ToList();
-        }
 
         public async Task Add(Question question)
         {

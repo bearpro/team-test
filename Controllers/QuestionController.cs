@@ -19,11 +19,11 @@ namespace team_test.Controllers
             this.questions = questions;
         }
 
-        public IActionResult Index()
-        {
-            var model = questions.GetAll();
-            return View(model);
-        }
+        // public IActionResult Index()
+        // {
+        //     //var model = questions.GetAll();
+        //     //return View(model);
+        // }
 
         [HttpPost]
         public async Task<IActionResult> Add(Question question)

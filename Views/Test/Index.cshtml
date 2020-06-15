@@ -1,9 +1,20 @@
-@model List<Test>
+@model team_test.ViewModels.Test.Index
+
+@using(Html.BeginForm("SetRunning", "Test", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td><p>Текущий тест:</p></td>
+            <td><input type="text" name="guid" value="@Model.RunningTestGuid"/></td>
+            <td><input type="submit" value="Применить"/></td>
+        </tr>
+    </table>
+}
 
 <h2>Список тестов</h2>
 
 <ul>
-@foreach (var test in Model)
+@foreach (var test in Model.Tests)
 {
     <li><a asp-action="Questions" asp-route-guid="@test.Guid">@test.Name</a> (@test.Guid)</li>
 }
