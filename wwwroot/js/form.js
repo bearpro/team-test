@@ -10,8 +10,12 @@ function pushAnswer(e) {
         question_guid
     };
 
-    fetch('http://5.63.154.249:5000/api/question/answer/', {
-        method: 'post'
+    fetch('/api/question/answer/', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(result)
     });
 }
 
