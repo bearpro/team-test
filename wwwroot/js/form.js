@@ -10,7 +10,7 @@ function pushAnswer(e) {
         question_guid
     };
 
-    fetch('http://5.63.154.249:5000/api/question/add/', {
+    fetch('http://5.63.154.249:5000/api/question/answer/', {
         method: 'post'
     });
 }

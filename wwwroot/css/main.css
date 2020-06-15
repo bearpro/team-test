@@ -1,3 +1,16 @@
+.container {
+    background-color: red;
+}
+
 .card {
     margin-top: 5%;
+}
+
+.list-group-item {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.list-group-item:hover {
+    background: red;
 }
