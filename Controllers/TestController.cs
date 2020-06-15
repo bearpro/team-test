@@ -7,21 +7,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using team_test.Models;
 using team_test.Services;
+using team_test.ViewModels;
 
 namespace team_test.Controllers
 {
     public class TestController : Controller
     {
         private readonly TestService tests;
+        private readonly QuestionRouterService router;
 
-        public TestController(TestService questions)
+        public TestController(TestService questions, QuestionRouterService router)
         {
             this.tests = questions;
+            this.router = router;
         }
 
         public IActionResult Index()
         {
-            var model = tests.GetAll();
+            var model = new ViewModels.Test.Index
+            {
+                Tests = tests.GetAll(),
+                RunningTestGuid = router.RunningTestGuid
+            };
             return View(model);
         }
 
@@ -35,6 +42,13 @@ namespace team_test.Controllers
         public async Task<IActionResult> Add(string name)
         {
             await tests.Add(new Test { Name = name });
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult SetRunning(Guid guid)
+        {
+            router.RunningTestGuid = guid;
             return RedirectToAction("Index");
         }
 
