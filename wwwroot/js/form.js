@@ -1,15 +1,17 @@
 function pushAnswer(e) {
     let answ = e.currentTarget;
-    let question_guid = answ.parentNode.parentNode.parentNode.id;
+    let QuestionGuid = answ.parentNode.parentNode.parentNode.id;
     console.log(answ);
-    console.log(question_guid);
+    console.log(QuestionGuid);
 
-    let answerGuid = answ.id;
+    let AnswersGuid = answ.id;
     result = {
-        answerGuid,
-        question_guid
+        QuestionGuid,
+        AnswersGuid
     };
 
+
+    console.log(JSON.stringify(result));
     fetch('/api/question/answer/', {
         method: 'post',
         headers: {
