@@ -36,5 +36,16 @@ namespace team_test.Services
                     .Single(test => test.Guid == guid);
             return test;
         }
+
+        public List<Question> NotAnsweredQuestions(Guid testGuid)
+        {
+            var questions =
+                db.Questions
+                    .Include(question => question.Answers)
+                    .Where(x => x.TestGuid == testGuid)
+                    .Where(x => x.Answers.Any(x => x.IsRight))
+                    .ToList();
+            return questions;
+        }
     }
 }
